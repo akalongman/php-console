@@ -1,0 +1,40 @@
+{
+    "name": "longman/console",
+    "type": "project",
+    "description": "Console commands on PHP",
+    "keywords": ["console", "php", "linux"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/akalongman/php-console/issues",
+        "source": "https://github.com/akalongman/php-console"
+    },
+    "authors": [
+        {
+        "name": "Avtandil Kikabidze aka LONGMAN",
+        "email": "akalongman@gmail.com",
+        "homepage": "http://longman.ge",
+        "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/console": "~2.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Longman\\Console\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*",
+        "phpspec/phpspec": "~2.1",
+        "squizlabs/php_codesniffer": "2.3.*"
+    }
+
+}

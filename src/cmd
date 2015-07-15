@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+/*
+ * This file is part of the PHPConsole package.
+ *
+ * (c) Avtandil Kikabidze aka LONGMAN <akalongman@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+*/
+
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+
+// set to run indefinitely if needed
+set_time_limit(0);
+
+/* Optional. It’s better to do it in the php.ini file */
+//date_default_timezone_set('America/Los_Angeles');
+
+// include the composer autoloader
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// import the Symfony Console Application
+use Symfony\Component\Console\Application;
+
+$app = new Application();
+
+$app->add(new Longman\Console\Commands\FibonacciCommand());
+
+$app->add(new Longman\Console\Commands\GenAppealsCommand());
+
+$app->add(new Longman\Console\Commands\BackupCommand());
+
+$app->run();
