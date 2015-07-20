@@ -165,6 +165,9 @@ EOT
             throw new \LogicException('Project folder can not created');
         }
 
+        $this->backupFTP();
+
+
         switch ($this->mode) {
             default:
             case 'sql':
@@ -302,6 +305,37 @@ LIMIT 1"';
         list($output, $return) = $this->exec($cmd);
 
     }
+
+    protected function backupFTP()
+    {
+        $ftphost = '';
+        $ftpuser = '';
+        $ftppass = '';
+        $ftptargetfolder = '';
+        $ftpdestfolder = $this->bpath . '/' . $this->project . '/' . $this->date;
+
+        $cut_dirs = count(explode('/', $ftptargetfolder));
+        if ($cut_dirs > 1) {
+            $cut_dirs -= 2;
+        }
+
+        $this->output->write('<comment>Download files from server</comment>', true);
+
+        $cmd = 'cd '.$ftpdestfolder.' && wget --recursive --no-verbose --no-parent \\
+--preserve-permissions --mirror - \\
+--tries=5 --timeout=30 --local-encoding=utf-8 --remote-encoding=utf-8 \\
+--user="'.$ftpuser.'" --password="'.$ftppass.'" ftp://'.$ftphost.''.$ftptargetfolder.' ';
+
+
+        list($output, $return) = $this->exec($cmd);
+  var_dump($return);
+  var_dump($output);
+  die;
+
+
+
+    }
+
 
     protected function checkProjectFolder()
     {
